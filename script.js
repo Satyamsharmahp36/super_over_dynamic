@@ -7,6 +7,8 @@ const resetbutton=document.getElementById('reset')
 const strikebutton=document.getElementById('strike')
 // we have used getElementBy(Id or ClassName) for using our html class and id in js
 
+const strikeAudio = new Audio("https://i1.faceprep.in/prograd-junior/bat%2Bhit%2Bball.mp3");
+const finishedAudio = new Audio("https://i1.faceprep.in/prograd-junior/Ball%2BHit%2BCheer.mp3");
 
 var team1score = 0
 var team2score = 0 
@@ -20,12 +22,15 @@ function finished(){
     if(team1score > team2score) alert("India wins");
     if(team1score == team2score) alert("Draw");
 }
+resetbutton.onclick =() => {window.location.reload()}
+
 // giving conditions , that when we need to stop the code 
 
 const possibleoutcomes= [0,1,2,3,4,5,6,'w']
 //giving all predefined value
 strikebutton.onclick =() => {
-//giving an operational strike button at web page  
+//giving an operational strike button at web page
+strikeAudio.play();  
     ballsfaced++;
     if (turn === 1){
         var score = possibleoutcomes[Math.floor(Math.random()*possibleoutcomes.length)]
@@ -63,11 +68,12 @@ strikebutton.onclick =() => {
         // as done earlier , similarly we gave values to our turn 2 means for pak
         if(ballsfaced ==6 || team2wickets==2 || team2score>team1score){
             turn =3
+            finishedAudio.play()
             finished()
         }
         // this is condition of finishing 2nd turn and in 3rd turn we will location of function given at top
         
     }
-resetbutton.onclick =() => {window.location.reload()}
 }
+
     // to make our reset button functional , we have used onclick and the to do reset window.location.reload()
